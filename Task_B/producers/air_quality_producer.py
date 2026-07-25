@@ -38,7 +38,7 @@ def build_producer():
         value_serializer=lambda v: json.dumps(v).encode("utf-8"),
         acks="all",
         retries=5,              # client-level retries for transient errors
-      #  enable_idempotence=False,  # kept simple; at-least-once, not exactly-once
+        enable_idempotence=False,  # at-least-once, not exactly-once. Duplicates are acceptable and handled in downstream,sensor_id+timestamp dedup; idempotence would add
         linger_ms=10,
     )
 
