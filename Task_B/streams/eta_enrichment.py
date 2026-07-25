@@ -82,7 +82,13 @@ def run(consume_timeout_ms=10000, limit=None):
         if limit and joined + unmatched >= limit:
             break
         gps = msg.value
-        route_id = msg.key or gps.get("route_id")
+        #route_id = msg.key or gps.get("route_id")
+        route_id = msg.key
+        if route_id is None:
+            route_id = gps.get("route_id")
+            print(f"[WARN] bus_gps message missing Kafka key, falling back to payload route_id={route_id} "
+                f"(bus_id={gps.get('bus_id')}) — check producer keying")
+
         sched = route_table.get(route_id)
 
         if sched is None:
