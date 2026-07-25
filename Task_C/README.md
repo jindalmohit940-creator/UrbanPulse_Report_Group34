@@ -51,7 +51,7 @@ python3 incident_detection_job.py
 # 4. Run the Spark ward energy job (problem 10) -- needs Task B's
 #    smart_meters_producer.py to have produced data first
 cd ../spark
-spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.13:3.5.1 \
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.13:4.1.2 \
     ward_energy_streaming.py
 #  -> urbanpulse.ward_energy_summary topic + ./output/ward_energy_summary_parquet/
 
@@ -72,9 +72,6 @@ spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.13:3.5.1 \
 | Ward Energy | 15-min tumbling window, 45-min watermark, dual sink | Long watermark justified by smart_meters' audit-not-alerting use case (Task B's 365-day retention) |
 | Health Advisory | 10-min/1-min sliding window ("rolling avg"), 5-min watermark, Update mode | Short watermark justified by air_quality also feeding Flink's sub-2-min alerting |
 
-See `docs/flink_vs_spark_comparison.md` for the engine-choice rationale
-(problem 12) and each script's module docstring for the full per-decision
-justification to lift directly into the PDF report.
 
 ## Notes for the report
 - All event-time timestamps come from each record's own `timestamp` field

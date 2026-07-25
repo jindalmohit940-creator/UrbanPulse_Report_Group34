@@ -2,20 +2,6 @@
 UrbanPulse - Priority consumer architecture on urbanpulse.traffic_signals
 (Task B, problem 6)
 
-WHY THIS VERSION USES confluent-kafka INSTEAD OF kafka-python-ng
---------------------------------------------------------------------
-Every earlier version crashed with:
-    ValueError: Invalid file descriptor: -1
-Testing eliminated concurrency as the cause: a single, fully isolated
-consumer (its own OS process, nothing else running) crashed on its very
-FIRST poll. That means the bug isn't about consumers interfering with each
-other -- it's kafka-python-ng's pure-Python socket/selector handling being
-broken with this Python 3.13 + Windows combination, full stop.
-
-The fix: use confluent-kafka-python instead. It wraps Kafka's official C
-client (librdkafka) rather than using Python's `selectors` module at all,
-so this bug class cannot occur.
-
 INSTALL FIRST:
     pip install confluent-kafka
 

@@ -74,7 +74,7 @@ python3 dlq/dlq_report.py
 - `traffic_signals` retention (7 days) was not specified in the assignment; the
   justification is written inline in `create_topics.sh` and above.
 - The priority consumer demo proves the near-zero-lag requirement empirically
-  by sampling consumer group lag every 5s for 45s while STANDARD_PRIORITY
+  by sampling consumer group lag every 14s for 45s while STANDARD_PRIORITY
   processing is artificially delayed — see printed lag table + summary at the
   end of `priority_consumer_demo.py`'s output.
 - `eta_enrichment.py`'s docstring includes the equivalent real Kafka Streams
