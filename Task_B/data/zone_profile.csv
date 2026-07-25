@@ -1,0 +1,19 @@
+zone,zone_name,population,num_schools
+Z01,Andheri East,183441,11
+Z02,Andheri West,237806,6
+Z03,Bandra,297254,4
+Z04,Borivali,410414,11
+Z05,Chembur,235457,4
+Z06,Colaba,157220,24
+Z07,Dadar,150866,11
+Z08,Dahisar,155337,5
+Z09,Ghatkopar,293239,6
+Z10,Goregaon,389565,11
+Z11,Juhu,266002,25
+Z12,Kandivali,374496,10
+Z13,Kurla,402713,8
+Z14,Malad,419391,22
+Z15,Mulund,367815,11
+Z16,Powai,367974,17
+Z17,Thane,219829,7
+Z18,Worli,170819,25

@@ -1,0 +1,51 @@
+route_id,route_name,terminal,scheduled_arrival_time
+R001,Borivali - Andheri East Express,East Depot,2026-07-01T06:17:43Z
+R002,Dahisar - Chembur Express,Central Terminal,2026-07-01T06:48:11Z
+R003,Worli - Bandra Express,West Hub,2026-07-01T06:31:48Z
+R004,Andheri West - Andheri East Express,Central Terminal,2026-07-01T06:18:55Z
+R005,Dahisar - Thane Express,West Hub,2026-07-01T06:06:48Z
+R006,Worli - Dadar Express,West Hub,2026-07-01T06:34:38Z
+R007,Dahisar - Mulund Express,West Hub,2026-07-01T06:25:59Z
+R008,Andheri East - Colaba Express,South Hub,2026-07-01T06:31:13Z
+R009,Ghatkopar - Chembur Express,North Depot,2026-07-01T07:01:07Z
+R010,Juhu - Borivali Express,Central Terminal,2026-07-01T06:35:56Z
+R011,Borivali - Kandivali Express,East Depot,2026-07-01T06:52:12Z
+R012,Ghatkopar - Andheri West Express,South Hub,2026-07-01T06:48:36Z
+R013,Borivali - Kurla Express,Central Terminal,2026-07-01T06:50:41Z
+R014,Goregaon - Kandivali Express,West Hub,2026-07-01T06:27:07Z
+R015,Bandra - Andheri West Express,North Depot,2026-07-01T07:07:46Z
+R016,Goregaon - Bandra Express,North Depot,2026-07-01T07:15:09Z
+R017,Borivali - Kurla Express,East Depot,2026-07-01T06:47:57Z
+R018,Kandivali - Colaba Express,East Depot,2026-07-01T06:42:15Z
+R019,Dadar - Ghatkopar Express,Central Terminal,2026-07-01T07:00:35Z
+R020,Colaba - Worli Express,North Depot,2026-07-01T06:31:09Z
+R021,Mulund - Kurla Express,East Depot,2026-07-01T07:04:41Z
+R022,Worli - Dahisar Express,East Depot,2026-07-01T07:19:32Z
+R023,Andheri West - Dahisar Express,Central Terminal,2026-07-01T07:17:57Z
+R024,Juhu - Kurla Express,East Depot,2026-07-01T06:28:31Z
+R025,Dadar - Juhu Express,North Depot,2026-07-01T07:09:44Z
+R026,Powai - Kurla Express,South Hub,2026-07-01T06:35:45Z
+R027,Ghatkopar - Chembur Express,North Depot,2026-07-01T07:17:51Z
+R028,Worli - Worli Express,East Depot,2026-07-01T07:18:59Z
+R029,Malad - Kurla Express,East Depot,2026-07-01T06:43:58Z
+R030,Chembur - Thane Express,South Hub,2026-07-01T06:36:12Z
+R031,Andheri West - Borivali Express,North Depot,2026-07-01T07:13:50Z
+R032,Colaba - Malad Express,West Hub,2026-07-01T06:36:20Z
+R033,Kurla - Kurla Express,West Hub,2026-07-01T07:04:57Z
+R034,Thane - Ghatkopar Express,West Hub,2026-07-01T07:32:45Z
+R035,Andheri East - Borivali Express,West Hub,2026-07-01T07:26:15Z
+R036,Ghatkopar - Juhu Express,Central Terminal,2026-07-01T06:56:02Z
+R037,Malad - Colaba Express,South Hub,2026-07-01T06:37:13Z
+R038,Ghatkopar - Thane Express,North Depot,2026-07-01T07:12:39Z
+R039,Borivali - Goregaon Express,West Hub,2026-07-01T07:20:34Z
+R040,Dadar - Chembur Express,East Depot,2026-07-01T07:32:03Z
+R041,Colaba - Worli Express,West Hub,2026-07-01T06:41:02Z
+R042,Juhu - Powai Express,Central Terminal,2026-07-01T06:49:38Z
+R043,Kandivali - Goregaon Express,North Depot,2026-07-01T06:46:57Z
+R044,Dahisar - Bandra Express,Central Terminal,2026-07-01T07:33:57Z
+R045,Powai - Bandra Express,West Hub,2026-07-01T07:37:16Z
+R046,Chembur - Chembur Express,South Hub,2026-07-01T07:23:31Z
+R047,Colaba - Ghatkopar Express,West Hub,2026-07-01T07:46:33Z
+R048,Malad - Dadar Express,West Hub,2026-07-01T07:39:33Z
+R049,Dadar - Goregaon Express,South Hub,2026-07-01T07:34:51Z
+R050,Kandivali - Mulund Express,West Hub,2026-07-01T07:20:49Z

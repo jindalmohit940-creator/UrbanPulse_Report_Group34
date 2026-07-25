@@ -1,0 +1,80 @@
+version: '3.8'
+
+# UrbanPulse - 3-broker Kafka cluster (KRaft mode, no Zookeeper needed)
+# Data sovereignty: everything runs on city-controlled servers, no managed cloud services.
+
+x-kafka-common: &kafka-common
+  image: confluentinc/cp-kafka:7.6.0
+  environment: &kafka-common-env
+    KAFKA_PROCESS_ROLES: "broker,controller"
+    KAFKA_CONTROLLER_QUORUM_VOTERS: "1@kafka-1:9093,2@kafka-2:9093,3@kafka-3:9093"
+    KAFKA_CONTROLLER_LISTENER_NAMES: "CONTROLLER"
+    KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT"
+    KAFKA_INTER_BROKER_LISTENER_NAME: "PLAINTEXT"
+    KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 3
+    KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 3
+    KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 2
+    KAFKA_DEFAULT_REPLICATION_FACTOR: 3
+    KAFKA_MIN_INSYNC_REPLICAS: 2
+    CLUSTER_ID: "K4I4kLHXSLmFwhbSBE829g"
+
+services:
+  kafka-1:
+    <<: *kafka-common
+    hostname: kafka-1
+    container_name: kafka-1
+    ports:
+      - "9092:9092"
+    environment:
+      <<: *kafka-common-env
+      KAFKA_NODE_ID: 1
+      KAFKA_LISTENERS: "PLAINTEXT://kafka-1:29092,CONTROLLER://kafka-1:9093,PLAINTEXT_HOST://0.0.0.0:9092"
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka-1:29092,PLAINTEXT_HOST://localhost:9092"
+    volumes:
+      - kafka1-data:/var/lib/kafka/data
+
+  kafka-2:
+    <<: *kafka-common
+    hostname: kafka-2
+    container_name: kafka-2
+    ports:
+      - "9094:9094"
+    environment:
+      <<: *kafka-common-env
+      KAFKA_NODE_ID: 2
+      KAFKA_LISTENERS: "PLAINTEXT://kafka-2:29092,CONTROLLER://kafka-2:9093,PLAINTEXT_HOST://0.0.0.0:9094"
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka-2:29092,PLAINTEXT_HOST://localhost:9094"
+    volumes:
+      - kafka2-data:/var/lib/kafka/data
+
+  kafka-3:
+    <<: *kafka-common
+    hostname: kafka-3
+    container_name: kafka-3
+    ports:
+      - "9096:9096"
+    environment:
+      <<: *kafka-common-env
+      KAFKA_NODE_ID: 3
+      KAFKA_LISTENERS: "PLAINTEXT://kafka-3:29092,CONTROLLER://kafka-3:9093,PLAINTEXT_HOST://0.0.0.0:9096"
+      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka-3:29092,PLAINTEXT_HOST://localhost:9096"
+    volumes:
+      - kafka3-data:/var/lib/kafka/data
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    depends_on:
+      - kafka-1
+      - kafka-2
+      - kafka-3
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: urbanpulse
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka-1:29092,kafka-2:29092,kafka-3:29092"
+
+volumes:
+  kafka1-data:
+  kafka2-data:
+  kafka3-data:

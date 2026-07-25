@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+Task_C/.venv-flink/
+
+# VS Code
+.vscode/
+
+# Temporary files
+*.tmp
+~$*
