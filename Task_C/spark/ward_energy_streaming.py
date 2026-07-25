@@ -1,6 +1,5 @@
 """
-UrbanPulse - Spark Structured Streaming: ward energy aggregation (Task C,
-problem 10)
+UrbanPulse - Spark Structured Streaming: ward energy aggregation (Task C,problem 10)
 
 Batch/serving-layer job. Consumes urbanpulse.smart_meters and computes, per
 ward_id, per 15-minute TUMBLING window:
@@ -31,7 +30,7 @@ versus bus_gps/air_quality/traffic_signals, which feed the Flink speed
 layer instead.
 
 Running:
-    spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.13:3.5.1 \
+    spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.13:4.1.2 \
         ward_energy_streaming.py
 """
 import os
@@ -170,8 +169,9 @@ def main():
     print(f"Streaming ward energy summary -> Kafka topic '{TOPIC_WARD_ENERGY_SUMMARY}' "
           f"and Parquet at '{PARQUET_PATH}' (partitioned by ward_id, date)")
 
-    kafka_query.awaitTermination()
-    parquet_query.awaitTermination()
+    #kafka_query.awaitTermination()
+    #parquet_query.awaitTermination()
+    spark.streams.awaitAnyTermination()
 
 
 if __name__ == "__main__":
