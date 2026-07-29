@@ -1,5 +1,5 @@
 
-# UrbanPulse — Smart City Streaming Platform
+# UrbanPulse - Smart City Streaming Platform
 
 **DSE ZG556 (Stream Processing and Analytics) - Situated Learning Assignment - Group 34**
 
