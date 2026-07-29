@@ -169,9 +169,9 @@ def main():
     print(f"Streaming ward energy summary -> Kafka topic '{TOPIC_WARD_ENERGY_SUMMARY}' "
           f"and Parquet at '{PARQUET_PATH}' (partitioned by ward_id, date)")
 
-    #kafka_query.awaitTermination()
-    #parquet_query.awaitTermination()
-    spark.streams.awaitAnyTermination()
+    kafka_query.awaitTermination()
+    parquet_query.awaitTermination()
+    #spark.streams.awaitAnyTermination()
 
 
 if __name__ == "__main__":
