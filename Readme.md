@@ -1,8 +1,7 @@
 
 # UrbanPulse — Smart City Streaming Platform
 
-**DSE ZG556 (Stream Processing and Analytics) — Situated Learning Assignment, Domain 3**
-BITS Pilani WILP | Group 34
+**DSE ZG556 (Stream Processing and Analytics) - Situated Learning Assignment - Group 34**
 
 UrbanPulse is a **Lambda-architecture** data platform for a metropolitan transport and
 environment authority, ingesting live bus GPS, traffic signal, air quality, and smart
@@ -19,8 +18,6 @@ This repo contains the full implementation for **Task A** (architecture design),
 
 ```
 .
-├── Task_A/
-│   └── (architecture diagram, Lambda vs Kappa matrix, readiness checklist — see report)
 ├── Task_B/
 │   ├── config/
 │   │   ├── kafka_config.py        # shared topic names, bootstrap servers, consumer groups
@@ -50,19 +47,18 @@ This repo contains the full implementation for **Task A** (architecture design),
 │   │   └── health_advisory_streaming_sql.py # 10-min rolling AQI average, zone join
 │   ├── jars/                      # Flink Kafka connector jar
 │   └── README.md                  # Task C-specific setup steps
-├── docs/
-│   └── flink_vs_spark_comparison.md
+|
 └── SPA_Assignment_UrbanPulse_Report_Group34.pdf
 ```
 
 
 ## Architecture Overview
 
-**Ingestion Layer** — Kafka (3-broker KRaft cluster, RF=3, min.insync.replicas=2)
-**Speed Layer** — Apache Flink (PyFlink), event-time processing, keyed state, sub-2-minute incident detection
-**Batch Layer** — Apache Spark Structured Streaming, windowed aggregation, dual sink (Kafka + Parquet)
-**Storage Layer** — Apache Druid (time-series), PostgreSQL/PostGIS (spatial), MinIO/HDFS (archive/replay), PostgreSQL OLAP (compliance reporting)
-**Serving Layer** — Superset dashboards, health advisory API, signal-control interface
+**Ingestion Layer** -  Kafka (3-broker KRaft cluster, RF=3, min.insync.replicas=2)
+**Speed Layer** - Apache Flink (PyFlink), event-time processing, keyed state, sub-2-minute incident detection
+**Batch Layer** - Apache Spark Structured Streaming, windowed aggregation, dual sink (Kafka + Parquet)
+**Storage Layer** - Apache Druid (time-series), PostgreSQL/PostGIS (spatial), MinIO/HDFS (archive/replay), PostgreSQL OLAP (compliance reporting)
+**Serving Layer** - Superset dashboards, health advisory API, signal-control interface
 
 Full design rationale, the Lambda-vs-Kappa evaluation matrix, and the government
 readiness checklist are in the report: `SPA_Assignment_UrbanPulse_Report_Group34.pdf`.
@@ -144,20 +140,20 @@ Full step-by-step instructions with expected output are in `Task_B/README.md` an
 
 | Topic | Retention | Partitions | Purpose |
 |---|---|---|---|
-| `urbanpulse.bus_gps` | 24 hours | — | Live bus position replay |
-| `urbanpulse.traffic_signals` | 7 days | 6 | Signal state, split across priority consumer groups |
-| `urbanpulse.air_quality` | 90 days | — | Pollution trend analysis |
-| `urbanpulse.smart_meters` | 365 days | — | Regulatory energy audit trail |
-| `urbanpulse.dlq` | — | — | Dead-letter queue for all validation failures |
-| `urbanpulse.incidents` | — | — | Unified Flink alert output (AQI/gridlock/bunching) |
-| `urbanpulse.ward_energy_summary` | — | — | Spark ward-level 15-min aggregates |
-| `urbanpulse.health_advisories` | — | — | Spark zone-level AQI advisories |
+| `urbanpulse.bus_gps` | Live bus position replay |
+| `urbanpulse.traffic_signals` | Signal state, split across priority consumer groups |
+| `urbanpulse.air_quality` | Pollution trend analysis |
+| `urbanpulse.smart_meters` | Regulatory energy audit trail |
+| `urbanpulse.dlq` | Dead-letter queue for all validation failures |
+| `urbanpulse.incidents` | Unified Flink alert output (AQI/gridlock/bunching) |
+| `urbanpulse.ward_energy_summary` | Spark ward-level 15-min aggregates |
+| `urbanpulse.health_advisories` | Spark zone-level AQI advisories |
 
 ---
 
 ## Key Design Decisions
 
-- **Lambda over Kappa**: driven by the 365-day smart-meter audit/reprocessing requirement — see report §2.2 for the full evaluation matrix.
+- **Lambda over Kappa**: driven by the 365-day smart-meter audit/reprocessing requirement - see report point 2.2 for the full evaluation matrix.
 - **Separate consumer groups for priority isolation**: `HIGH_PRIORITY` and `STANDARD_PRIORITY` track independent offsets on the same topic, so a slow analytics consumer can never block real-time signal control.
 - **Event-time processing in Flink**: all three detectors use watermarks, not processing time, since sensor/GPS data can arrive out of order.
 - **Dual sink in Spark**: `ward_energy_streaming.py` writes simultaneously to Kafka (dashboards) and partitioned Parquet (audit archive).
